@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+
+  consul:
+    image: consul:1.15
+    restart: unless-stopped
+    command: "agent -server -bootstrap -ui -client 0.0.0.0" # need bootstrap to persist data
+    ports:
+      - 8500:8500
+    volumes:
+      - consul:/consul/data
+
+volumes:
+  consul:
